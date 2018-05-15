@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="impl-mule-api-mongodb-post-person" doc:id="7e56c977-89b6-48dd-8403-8dbfe983dd59" >
+		<logger level="INFO" doc:name="Logger" doc:id="54731697-9049-48dc-8688-48c405f25bb5" />
+		<set-variable value="#[payload]" doc:name="Set originalPayload" doc:id="e703e178-6280-478f-a8fc-06f1f4e3abec" variableName="originalPayload"/>
+		<ee:transform doc:name="Transform Message" doc:id="240eaef7-0d98-4211-ab82-e9263fb8f943" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	lastName: payload.lastName
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<set-variable value='#[payload]' doc:name="Set Variable queryCondition" doc:id="ad836487-e54a-47c6-bdf8-735fd92a8a3e" variableName="queryCondition"/>
+		<flow-ref doc:name="mongodb-operation-insert" doc:id="710a6b0f-8c76-4d95-a4aa-0a542238051f" name="mongodb-operation-insert"/>
+		<logger level="INFO" doc:name="Logger" doc:id="e04c4b9b-8c2b-45f3-84fb-a7386177623b" />
+	</flow>
+</mule>

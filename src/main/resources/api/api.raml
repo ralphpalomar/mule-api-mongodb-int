@@ -1,0 +1,36 @@
+#%RAML 1.0
+title: mule-api-mongodb-int API
+description: Mule API to integrate with MongoDB
+baseUri: http://localhost:8081/api/v1
+version: 1.0
+
+/person:
+  get:
+    responses:
+      200:
+        body: 
+          application/json:
+        
+  post:
+    body:
+      application/json:
+    responses:
+      201:
+  
+  /{id}:
+    put:
+      body:
+        application/json:
+      responses:
+        200:
+        
+    delete:
+      responses:
+        204:
+    
+  /_search:
+    get:
+      responses:
+        200:
+          body:
+            application/json:

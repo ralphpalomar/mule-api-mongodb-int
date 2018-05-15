@@ -1,6 +1,9 @@
 {
   "configs": [
-    "mule-api-mongodb-int.xml"
+    "impl/impl-mule-api-mongodb.xml",
+    "mule-api-mongodb-int.xml",
+    "shared/mongodb-operations.xml",
+    "shared/config.xml"
   ],
   "secureProperties": [],
   "redeploymentEnabled": true,
@@ -10,7 +13,9 @@
   "classLoaderModelLoaderDescriptor": {
     "id": "mule",
     "attributes": {
-      "exportedResources": []
+      "exportedResources": [
+        "api\\api.raml"
+      ]
     }
   },
   "bundleDescriptorLoader": {
